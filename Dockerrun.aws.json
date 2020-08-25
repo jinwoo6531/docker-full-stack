@@ -1,0 +1,33 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "pjw6531/docker-test-frontend",
+            "hostname": "frontend",
+            "essential": false,
+            "memory": 512
+        },
+        {
+            "name": "backend",
+            "image": "pjw6531/docker-test-backend",
+            "hostname": "backend",
+            "essential": false,
+            "memory": 512
+        },
+        {
+            "name": "nginx",
+            "image": "pjw6531/docker-test-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["frontend", "backend"],
+            "memory": 150
+        }
+    ]
+}
